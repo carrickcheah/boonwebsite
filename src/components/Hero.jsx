@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section className="mx-auto grid max-w-7xl items-center gap-16 px-6 pt-20 pb-28 md:grid-cols-2 md:pt-28">
       <div>
-        <h1 className="text-4xl leading-tight font-semibold md:text-5xl md:leading-[64px]">
+        <h1 className="text-[2.75rem] leading-[1.1] font-semibold tracking-tight text-balance lg:text-6xl">
           The AI Contact Centre that sells while you sleep
         </h1>
         <p className="mt-6 max-w-lg text-body">
@@ -19,13 +19,13 @@ export default function Hero() {
         <p className="mt-12 text-xs text-muted">Supported platforms</p>
         <div className="mt-3 flex flex-wrap gap-2">
           {CHANNELS.map((c) => (
-            <span key={c} className="chip rounded-full border border-line bg-white px-3 py-1 text-xs text-sub">{c}</span>
+            <span key={c} className="chip rounded-full bg-ink/5 px-3 py-1 text-xs text-sub">{c}</span>
           ))}
         </div>
       </div>
       <div className="relative">
         <div className="absolute -inset-10 -z-10 rounded-full bg-teal/25 blur-3xl" />
-        <img src="/img/hero.jpg" alt="AI inbox with WhatsApp, Instagram and Facebook chats" className="float w-full rounded-2xl" />
+        <img src="/img/hero.jpg" alt="AI inbox with WhatsApp, Instagram and Facebook chats" width="1536" height="1024" fetchPriority="high" className="float w-full rounded-2xl" />
       </div>
     </section>
   );

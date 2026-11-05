@@ -10,18 +10,18 @@ export default function InboxSection() {
     <section className="bg-white py-24">
       <div className="mx-auto max-w-7xl px-6">
         <h2 className="section-title">
-          All in one <span className="text-teal">inbox</span>
+          All in one <span className="text-teal-strong">inbox</span>
         </h2>
         <div className="mt-14 grid items-center gap-16 md:grid-cols-2">
-          <ul className="space-y-8">
+          <ul className="divide-y divide-line/60">
             {POINTS.map(([title, text]) => (
-              <li key={title} className="border-l-2 border-teal pl-5">
+              <li key={title} className="py-7 first:pt-0 last:pb-0">
                 <h3 className="text-xl font-semibold">{title}</h3>
                 <p className="mt-2 text-body">{text}</p>
               </li>
             ))}
           </ul>
-          <img src="/img/inbox.jpg" alt="Every channel flowing into one inbox" className="w-full rounded-2xl" />
+          <img src="/img/inbox.jpg" alt="Every channel flowing into one inbox" width="1536" height="1024" loading="lazy" className="w-full rounded-2xl" />
         </div>
       </div>
     </section>

@@ -6,17 +6,23 @@
   --color-ink: #0f172a;
   --color-body: #667085;
   --color-sub: #475466;
-  --color-muted: #98a2b3;
+  --color-muted: #667085;
   --color-teal: #2bb6a3;
+  /* Teal for text and for fills behind white text: 5.5:1 on white. --color-teal is 2.5:1. */
+  --color-teal-strong: #0f766e;
   --color-page: #fafafa;
   --color-soft: #f5f5f5;
   --color-line: #d0d5dd;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-padding-top: 5rem; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body { @apply bg-page font-sans text-ink antialiased; }
+::selection { background: rgb(43 182 163 / .3); }
+/* In the base layer so a utility can recolour the ring on a dark panel. */
+@layer base { :focus-visible { outline: 2px solid var(--color-teal-strong); outline-offset: 3px; border-radius: 4px; } }
 
-@utility section-title { @apply text-4xl font-semibold tracking-tight md:text-[68px] md:leading-[1.33]; }
+@utility section-title { @apply text-4xl leading-[1.15] font-semibold tracking-tight text-balance md:text-5xl; }
 @utility btn { @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition; }
 @utility btn-dark { @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition bg-ink text-white hover:bg-ink/85; }
 @utility btn-light { @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition border border-line bg-white/60 text-ink hover:bg-white; }
@@ -28,11 +34,13 @@ body { @apply bg-page font-sans text-ink antialiased; }
 .fade-in { animation: fade .5s ease-out both; }
 .reveal { opacity: 0; transform: translateY(1.25rem); transition: opacity .7s ease-out, transform .7s cubic-bezier(.2,.7,.2,1); }
 .reveal.shown { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .float, .fade-in { animation: none } .reveal { opacity: 1; transform: none } }
-.card { transition: box-shadow .25s, transform .3s; }
+@media (prefers-reduced-motion: reduce) { .float, .fade-in { animation: none } .reveal { opacity: 1; transform: none; transition: none } }
+.card { transition: opacity .7s ease-out, box-shadow .25s, transform .3s; }
 .card:hover { box-shadow: 0 20px 40px -20px rgb(15 23 42 / .25); transform: translateY(-4px); }
+/* Floating cards only float where they are positioned freely; below lg they are a plain grid. */
 @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-8px) } }
-.bob { animation: bob 5s ease-in-out infinite; }
-.parallax:nth-child(odd) .bob { animation-duration: 6.5s; animation-delay: -2s; }
-.parallax { will-change: transform; }
-@media (prefers-reduced-motion: reduce) { .bob { animation: none } }
+@media (min-width: 64rem) and (prefers-reduced-motion: no-preference) {
+  .bob { animation: bob 5s ease-in-out infinite; }
+  .parallax:nth-child(odd) .bob { animation-duration: 6.5s; animation-delay: -2s; }
+  .parallax { will-change: transform; }
+}

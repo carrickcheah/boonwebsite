@@ -7,7 +7,18 @@ import App from "./App.jsx";
 // fades up 1.25rem as it enters the screen, siblings one after another.
 const ANIMATED = "main h1, main h2, main h3, main p, main img, main a, main li, main .card, main .chip";
 const seen = new IntersectionObserver((entries) => {
-  for (const e of entries) if (e.isIntersecting) { e.target.classList.add("shown"); seen.unobserve(e.target); }
+  for (const e of entries) if (e.isIntersecting) {
+    const el = e.target;
+    // Once faded in, drop the reveal styles: its delay and transition would otherwise slow every hover.
+    el.addEventListener("transitionend", function done(ev) {
+      if (ev.target !== el) return;
+      el.removeEventListener("transitionend", done);
+      el.classList.remove("reveal", "shown");
+      el.style.transitionDelay = "";
+    });
+    el.classList.add("shown");
+    seen.unobserve(el);
+  }
 }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
 function tag() {
   document.querySelectorAll(ANIMATED).forEach((el) => {

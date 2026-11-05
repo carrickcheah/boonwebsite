@@ -24,18 +24,22 @@ export default function Nav() {
           <a href="#cta" className="btn-light">Book a demo</a>
           <a href="https://nexgpt.nexerp.io" className="btn-dark">Try for free</a>
         </div>
-        <button className="md:hidden" aria-label="Menu" onClick={() => setOpen(!open)}>
+        <button className="-mr-2.5 flex h-11 w-11 flex-col items-center justify-center md:hidden" aria-label="Menu" aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>
           <span className="block h-0.5 w-6 bg-ink" />
           <span className="mt-1.5 block h-0.5 w-6 bg-ink" />
           <span className="mt-1.5 block h-0.5 w-6 bg-ink" />
         </button>
       </nav>
       {open && (
-        <div className="flex flex-col gap-4 border-t border-line/50 px-6 py-4 text-sub md:hidden">
+        <div id="mobile-menu" className="flex flex-col border-t border-line/50 px-6 py-3 text-sub md:hidden">
           {LINKS.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setOpen(false)}>{label}</a>
+            <a key={href} href={href} className="py-2.5" onClick={() => setOpen(false)}>{label}</a>
           ))}
-          <a href="https://nexgpt.nexerp.io" className="btn-dark">Try for free</a>
+          <a href="https://nexgpt.nexerp.io/login" className="py-2.5">Login</a>
+          <div className="mt-2 grid grid-cols-2 gap-3 pb-1">
+            <a href="#cta" className="btn-light min-h-11" onClick={() => setOpen(false)}>Book a demo</a>
+            <a href="https://nexgpt.nexerp.io" className="btn-dark min-h-11">Try for free</a>
+          </div>
         </div>
       )}
     </header>

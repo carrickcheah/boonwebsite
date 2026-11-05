@@ -13,8 +13,9 @@ import Footer from "./components/Footer.jsx";
 export default function App() {
   return (
     <>
+      <a href="#main" className="sr-only rounded-md bg-ink px-4 py-2 text-sm text-white focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60]">Skip to content</a>
       <Nav />
-      <main>
+      <main id="main" className="overflow-x-clip">
         <Hero />
         <Showcase />
         <Features />
